@@ -1,0 +1,38 @@
+{
+    "family": "strapi-task",
+    "taskRoleArn": "arn:aws:iam::811738710312:role/ecs_fargate_taskRole",
+    "executionRoleArn": "arn:aws:iam::811738710312:role/ecs_fargate_taskRole",
+    "containerDefinitions": [
+        {
+            "name": "strapi-app",
+            "image": "811738710312.dkr.ecr.us-east-1.amazonaws.com/strapi-app:latest",
+            "portMappings": [
+                {
+                    "containerPort": 1337,
+                    "hostPort": 1337,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                { "name": "ADMIN_JWT_SECRET", "value": "tobereplacedbythedvteam12345678" },
+                { "name": "API_TOKEN_SALT", "value": "tobereplacedbythedvteam12345678" },
+                { "name": "TRANSFER_TOKEN_SALT", "value": "tobereplacedbythedvteam12345678" },
+                { "name": "APP_KEYS", "value": "key1,key2,key3,key4" },
+                { "name": "JWT_SECRET", "value": "tobereplacedbythedvteam12345678" }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/strapi",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [ "FARGATE" ],
+    "cpu": "1024",
+    "memory": "2048"
+}

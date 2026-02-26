@@ -1,0 +1,10 @@
+{
+    "applicationName": "StrapiApp",
+    "deploymentGroupName": "strapi-dg-sagar",
+    "revision": {
+        "revisionType": "AppSpecContent",
+        "appSpecContent": {
+            "content": "version: 0.0\nResources:\n  - TargetService:\n      Type: AWS::ECS::Service\n      Properties:\n        TaskDefinition: \"strapi-task:221\"\n        LoadBalancerInfo:\n          ContainerName: \"strapi-app\"\n          ContainerPort: 1337"
+        }
+    }
+}
