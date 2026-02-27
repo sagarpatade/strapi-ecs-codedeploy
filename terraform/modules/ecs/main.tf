@@ -51,7 +51,9 @@ resource "aws_ecs_service" "strapi" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
-  deployment_controller { type = "CODE_DEPLOY" }
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
 
   network_configuration {
     subnets          = var.public_subnets
