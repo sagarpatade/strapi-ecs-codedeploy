@@ -1,0 +1,33 @@
+services:
+  strapi-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: strapi
+    ports:
+      - "5433:5432"
+
+  strapi-app:
+    build: .
+    ports:
+      - "1337:1337"
+    environment:
+      # Database Settings
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: strapi-db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: password
+      
+      # Strapi Security Secrets (Required for Strapi 5)
+      APP_KEYS: "testKeyOne12345,testKeyTwo67890"
+      API_TOKEN_SALT: "localTokenSalt123"
+      ADMIN_JWT_SECRET: "localJwtSecret456"
+      TRANSFER_TOKEN_SALT: "localTransferSalt789"
+      
+      # App Settings
+      NODE_ENV: development
+    depends_on:
+      - strapi-db

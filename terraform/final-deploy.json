@@ -1,0 +1,10 @@
+{
+    "applicationName": "StrapiApp",
+    "deploymentGroupName": "strapi-dg-sagar",
+    "revision": {
+        "revisionType": "AppSpecContent",
+        "appSpecContent": {
+            "content": "version: 0.0\nResources:\n  - TargetService:\n      Type: AWS::ECS::Service\n      Properties:\n        TaskDefinition: \"arn:aws:ecs:us-east-1:811738710312:task-definition/strapi-task:225\"\n        LoadBalancerInfo:\n          ContainerName: \"strapi-app\"\n          ContainerPort: 1337\n        NetworkConfiguration:\n          AwsvpcConfiguration:\n            Subnets: [\"subnet-0e7cd1875b0aec352\", \"subnet-0b2e67b96310fbd8c\"]\n            SecurityGroups: [\"sg-06ca30c948083f1d7\"]\n            AssignPublicIp: \"ENABLED\""
+        }
+    }
+}
